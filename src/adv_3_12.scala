@@ -26,33 +26,34 @@ object adv_3_12 extends App {
 
   @tailrec
   def oxyRec(x: List[List[Int]], ix: Int): List[List[Int]] = {
-    if (x.length == 1) {
-      x
-    } else {
-      val items_with_ones = x.filter(_(ix) == 1)
-      if (2*items_with_ones.length >= x.length) {
-        oxyRec(items_with_ones, ix+1)
-      } else {
-        val tmp = x.filter(_(ix) == 0)
-        oxyRec(tmp, ix+1)
-      }
+    x.length match {
+      case 1 => x
+      case _ =>
+        val items_with_ones = x.filter(_(ix) == 1)
+        if (2*items_with_ones.length >= x.length) {
+          oxyRec(items_with_ones, ix+1)
+        } else {
+          val tmp = x.filter(_(ix) == 0)
+          oxyRec(tmp, ix+1)
+        }
     }
   }
 
   @tailrec
   def co2Rec(x: List[List[Int]], ix: Int): List[List[Int]] = {
-    if (x.length == 1) {
-      x
-    } else {
-      val items_with_ones = x.filter(_(ix) == 1)
-      if (2*items_with_ones.length >= x.length) {
-        val tmp = x.filter(_(ix) == 0)
-        co2Rec(tmp, ix+1)
-      } else {
-        co2Rec(items_with_ones, ix+1)
-      }
+    x.length match {
+      case 1 => x
+      case _ =>
+        val items_with_ones = x.filter(_(ix) == 1)
+        if (2*items_with_ones.length >= x.length) {
+          val tmp = x.filter(_(ix) == 0)
+          co2Rec(tmp, ix+1)
+        } else {
+          co2Rec(items_with_ones, ix+1)
+        }
     }
   }
+
   def main_2(): Unit = {
     val src = Source.fromFile("./3-12/input.txt")
     val linesStr = src.getLines.toList
