@@ -8,7 +8,7 @@ object adv_3_12 extends App {
   }
 
   def main_1(): Unit = {
-    val src = Source.fromFile("../3-12/input.txt")
+    val src = Source.fromFile("./3-12/input.txt")
     val linesStr = src.getLines.toList
     src.close()
     val lines = linesStr.map(_.toList.map(_.asDigit))
