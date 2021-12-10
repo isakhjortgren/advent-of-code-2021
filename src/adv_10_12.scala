@@ -98,8 +98,17 @@ object adv_10_12 extends App {
     leftOver.toList.reverse.foldLeft(0.toLong)((score, sign) => (score*5 + convertCharToScore(sign)).toLong)
   }
 
-  def getMedian(scores: List[Int]): Int = {
-    1
+  def getMedian(scores: List[Long]): Long = {
+    val medians = scores.grouped(5).map(x => {
+      x.sorted.toList(x.length/2)
+    }).toList
+    if (medians.length == 1) {
+      medians.head
+    } else if (medians.isEmpty) {
+      throw GetScoreException
+    } else {
+      getMedian(medians)
+    }
   }
 
   def main2(): Unit = {
@@ -109,6 +118,7 @@ object adv_10_12 extends App {
     val incompletes = linesStr.map(getParsedString)
     val scores = incompletes.map(getScorePart2)
 
+    println(getMedian(scores))
     println(scores.sorted.toList(scores.length/2))
   }
   main2()
