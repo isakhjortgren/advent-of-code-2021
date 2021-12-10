@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 import scala.io.Source
 
 object CorrectCloserException extends Exception { }
@@ -98,6 +99,7 @@ object adv_10_12 extends App {
     leftOver.toList.reverse.foldLeft(0.toLong)((score, sign) => (score*5 + convertCharToScore(sign)).toLong)
   }
 
+  @tailrec
   def getMedian(scores: List[Long]): Long = {
     val medians = scores.grouped(5).map(x => {
       x.sorted.toList(x.length/2)
