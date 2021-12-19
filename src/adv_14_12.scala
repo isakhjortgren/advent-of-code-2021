@@ -67,6 +67,6 @@ object adv_14_12 extends App {
 
   }
 
-  main3()
+  main2()
 
 }
