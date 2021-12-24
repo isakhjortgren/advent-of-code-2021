@@ -39,7 +39,7 @@ object adv_14_12 extends App {
   }
 
   def main2(): Unit = {
-    val src = Source.fromFile("./14-12/input.txt")
+    val src = Source.fromFile("./14-12/input2.txt")
     val rawData = src.getLines.toList
     src.close()
     val sequence = rawData.head
